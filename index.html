@@ -306,11 +306,55 @@
                 // Hide current slide
                 document.querySelector('.slide-content.active').classList.remove('active');
                 
-                // Show new slide
+                // Load and show new slide
+                loadSlideContent(slideNumber);
                 document.getElementById(`slide-${slideNumber}`).classList.add('active');
                 
                 currentSlideIndex = slideNumber;
                 updateButtons();
+            }
+        }
+        
+        // Dynamic slide loading
+        async function loadSlideContent(slideNumber) {
+            const slideContainer = document.getElementById(`slide-${slideNumber}`);
+            
+            // Skip if already loaded
+            if (slideContainer.dataset.loaded === 'true') {
+                return;
+            }
+            
+            try {
+                const slideFiles = [
+                    '',
+                    'slide_01_title.html',
+                    'slide_02_current_performance.html', 
+                    'slide_03_top_priorities.html',
+                    'slide_04_risks_support.html',
+                    'slide_05_highlights.html',
+                    'slide_06_thank_you.html'
+                ];
+                
+                const response = await fetch(slideFiles[slideNumber]);
+                const html = await response.text();
+                
+                // Extract content from body tag
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const slideContent = doc.querySelector('.slide-container') || doc.body;
+                
+                // Copy the content but maintain our playbar structure
+                slideContainer.innerHTML = slideContent.innerHTML;
+                slideContainer.dataset.loaded = 'true';
+                
+            } catch (error) {
+                console.error(`Error loading slide ${slideNumber}:`, error);
+                slideContainer.innerHTML = `
+                    <div style="text-align: center; padding: 100px 60px;">
+                        <h2 style="font-family: 'ABC Arizona Flare', serif; font-size: 48px; color: #342e29; margin-bottom: 40px;">Slide ${slideNumber}</h2>
+                        <p style="font-family: 'ABC Arizona Sans', sans-serif; font-size: 18px; color: #86312b;">Content loading failed</p>
+                    </div>
+                `;
             }
         }
         
@@ -349,6 +393,9 @@
         // Initialize
         updateButtons();
         startTimer();
+        
+        // Load first slide on startup
+        loadSlideContent(1);
     </script>
 </body>
 </html>
