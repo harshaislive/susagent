@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beforest | Risks & Support Needed</title>
+    <title>Beforest | Risks & Support</title>
     <style>
         @font-face {
             font-family: 'ABC Arizona Flare';
@@ -36,297 +36,275 @@
         }
         
         body {
-            font-family: 'ABC Arizona Sans', Arial, sans-serif;
-            background: #ffffff;
+            font-family: 'ABC Arizona Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fdfbf7;
             color: #342e29;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .slide-container {
-            width: 100vw;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 80px 60px;
-            position: relative;
-        }
-        
-        .slide-header {
-            position: absolute;
-            top: 40px;
-            left: 60px;
-            right: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-        
-        .logo {
-            font-family: 'ABC Arizona Flare', serif;
-            font-size: 28px;
-            font-weight: 400;
-            color: #342e29;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .slide-number {
-            font-family: 'ABC Arizona Sans', sans-serif;
-            font-size: 16px;
-            color: #342e29;
-            background: rgba(52, 46, 41, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-        
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            max-width: 1200px;
             width: 100%;
-            margin: 0 auto;
-            padding-top: 40px;
-        }
-        
-        .slide-title {
-            font-family: 'ABC Arizona Flare', serif;
-            font-size: clamp(28px, 4vw, 48px);
-            font-weight: 400;
-            color: #342e29;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .slide-subtitle {
-            font-family: 'ABC Arizona Sans', sans-serif;
-            font-size: 18px;
-            color: #002140;
-            text-align: center;
-            margin-bottom: 50px;
-            opacity: 0.8;
-            font-style: italic;
-        }
-        
-        .sections-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            height: 100%;
-        }
-        
-        .section {
-            background: #fdfbf7;
-            border: 1px solid rgba(52, 46, 41, 0.2);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 2px 8px rgba(52, 46, 41, 0.1);
-            transition: all 0.3s ease;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
         }
         
-        .section::before {
-            content: '';
+        .slide-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 0 12px 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.6;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 24px;
+            left: 50px;
+        }
+        
+        .slide-number {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #342e29;
+            opacity: 0.4;
+            position: absolute;
+            top: 24px;
+            right: 50px;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 60px;
+            max-width: 1200px;
+            margin: 0 auto;
             width: 100%;
-            height: 6px;
-            background: linear-gradient(to right, #ff774a, #9e3430);
-            transition: height 0.3s ease;
         }
         
-        .section:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(52, 46, 41, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        .slide-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: clamp(40px, 5vw, 58px);
+            font-weight: 400;
+            color: #342e29;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.0;
+            letter-spacing: -0.5px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
         }
         
-        .section:hover::before {
-            height: 8px;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+        
+        .content-section {
+            display: flex;
+            flex-direction: column;
         }
         
         .section-title {
             font-family: 'ABC Arizona Flare', serif;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 400;
             color: #86312b;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 28px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.6s forwards;
         }
         
-        .section-description {
-            font-family: 'ABC Arizona Sans', sans-serif;
-            font-size: 16px;
-            color: #342e29;
-            margin-bottom: 24px;
-            opacity: 0.8;
-            line-height: 1.4;
+        .risks-section .section-title {
+            color: #86312b;
         }
         
-        .input-areas {
+        .support-section .section-title {
+            color: #344736;
+        }
+        
+        .items-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            flex: 1;
+            gap: 18px;
         }
         
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
+        .item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
         }
         
-        .input-label {
+        .risks-section .item {
+            border-left: 3px solid #86312b;
+        }
+        
+        .support-section .item {
+            border-left: 3px solid #344736;
+        }
+        
+        .item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 16px 32px rgba(52, 46, 41, 0.1);
+        }
+        
+        .item-title {
             font-family: 'ABC Arizona Flare', serif;
+            font-size: 17px;
+            font-weight: 400;
+            color: #342e29;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .item-description {
+            font-family: 'ABC Arizona Sans', sans-serif;
             font-size: 14px;
             font-weight: 400;
-            color: #86312b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            opacity: 0.9;
-        }
-        
-        .input-area {
-            font-family: 'ABC Arizona Sans', sans-serif;
-            font-size: 16px;
             color: #342e29;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(52, 46, 41, 0.3);
-            border-radius: 8px;
-            padding: 16px;
-            min-height: 120px;
-            resize: vertical;
-            outline: none;
-            transition: all 0.3s ease;
-            line-height: 1.5;
-            flex: 1;
-        }
-        
-        .input-area::placeholder {
-            color: rgba(52, 46, 41, 0.5);
-            font-style: italic;
-        }
-        
-        .input-area:focus {
-            border-color: #86312b;
-            background: rgba(52, 46, 41, 0.05);
-            box-shadow: 0 0 0 2px rgba(52, 46, 41, 0.1);
-        }
-        
-        .risks-section {
-            background: rgba(134, 49, 43, 0.1);
-        }
-        
-        .support-section {
-            background: rgba(52, 46, 41, 0.1);
-        }
-        
-        .icon-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            margin-right: 12px;
+            line-height: 1.4;
             opacity: 0.8;
         }
         
-        .warning-icon {
-            background: #ff774a;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
-            mask-size: contain;
-        }
-        
-        .support-icon {
-            background: #ff774a;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A2.996 2.996 0 0 0 17.11 7H16c-.8 0-1.54.37-2.01.99l-2.54 7.63H14v6h6zM12.5 11.5c.83 0 1.5-.67 1.5-1.5S13.33 8.5 12.5 8.5 11 9.17 11 10s.67 1.5 1.5 1.5zM5.5 6c1.11 0 2-.89 2-2S6.61 2 5.5 2 3.5 2.89 3.5 4s.89 2 2 2zm2 16v-6H10l-2.54-7.63A2.996 2.996 0 0 0 4.61 7H3.5c-.8 0-1.54.37-2.01.99L-.05 15.37H2.5v6h5z'/%3E%3C/svg%3E") no-repeat center;
-            mask-size: contain;
-        }
-        
-        .slide-footer {
-            position: fixed;
-            bottom: 40px;
-            left: 60px;
-            right: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-        
-        .footer-text {
-            font-family: 'ABC Arizona Sans', sans-serif;
-            font-size: 14px;
-            color: #342e29;
-            opacity: 0.7;
-        }
-        
-        @media (max-width: 968px) {
-            .sections-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
+        @media (max-width: 1024px) {
+            .content-area {
+                padding: 0 60px;
+            }
+            
+            .content-grid {
+                gap: 60px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 32px;
             }
         }
         
         @media (max-width: 768px) {
-            .slide-container {
-                padding: 60px 30px;
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
             }
             
-            .slide-header {
-                top: 20px;
-                left: 30px;
-                right: 30px;
+            .content-area {
+                padding: 0 40px;
             }
             
-            .section {
-                padding: 24px;
+            .slide-title {
+                margin-bottom: 40px;
             }
             
             .section-title {
                 font-size: 24px;
+                margin-bottom: 24px;
             }
             
-            .input-area {
-                min-height: 100px;
+            .item {
+                padding: 24px;
             }
             
-            .slide-footer {
-                bottom: 20px;
-                left: 30px;
-                right: 30px;
+            .item-title {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .item-description {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                left: 40px;
+                font-size: 14px;
+            }
+            
+            .slide-number {
+                right: 40px;
+                font-size: 12px;
+            }
+            
+            .content-area {
+                padding: 0 32px;
+            }
+            
+            .content-grid {
+                gap: 32px;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .slide-title {
+                margin-bottom: 32px;
+                font-size: clamp(32px, 5vw, 48px);
+            }
+            
+            .content-grid {
+                gap: 40px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .item {
+                padding: 20px;
+            }
+            
+            .items-list {
+                gap: 16px;
             }
         }
         
         @media print {
             body {
                 background: white;
-                color: #86312b;
+                color: #342e29;
             }
             
             .slide-container {
-                min-height: auto;
-            }
-            
-            .slide-footer {
-                position: relative;
-                margin-top: 40px;
+                height: auto;
+                min-height: 100vh;
             }
         }
     </style>
@@ -335,140 +313,58 @@
     <div class="slide-container">
         <header class="slide-header">
             <div class="logo">BEFOREST</div>
-            <div class="slide-number">Slide 3 of 4</div>
+            <div class="slide-number">Slide 4 of 6</div>
         </header>
         
         <main class="content-area">
-            <h1 class="slide-title">BI Risks & Support Needed</h1>
-            <p class="slide-subtitle">Data challenges require collaborative solutions</p>
+            <h2 class="slide-title">Risks & Support</h2>
             
-            <div class="sections-container">
-                <!-- Risks Section -->
-                <div class="section risks-section">
-                    <div class="icon-container">
-                        <div class="section-icon warning-icon"></div>
-                        <h2 class="section-title">Potential Risks</h2>
-                    </div>
-                    <p class="section-description">What data, technical, or resource blockers could impact our analytics delivery?</p>
-                    
-                    <div class="input-areas">
-                        <div class="input-group">
-                            <label class="input-label">Risk 1</label>
-                            <textarea class="input-area" placeholder="Data quality issues, technical constraints, or resource limitations affecting BI priorities"></textarea>
+            <div class="content-grid">
+                <div class="content-section risks-section">
+                    <h3 class="section-title">Key Risks</h3>
+                    <div class="items-list">
+                        <div class="item">
+                            <h4 class="item-title">Single Channel Dependency</h4>
+                            <p class="item-description">Deal gen only through Facebook ads. Facebook down for 2 days = almost no deals.</p>
                         </div>
-                        
-                        <div class="input-group">
-                            <label class="input-label">Risk 2</label>
-                            <textarea class="input-area" placeholder="Describe another potential risk or uncertainty"></textarea>
-                        </div>
-                        
-                        <div class="input-group">
-                            <label class="input-label">Risk 3 (Optional)</label>
-                            <textarea class="input-area" placeholder="Additional risk or uncertainty (if applicable)"></textarea>
+                        <div class="item">
+                            <h4 class="item-title">Qualification Gap</h4>
+                            <p class="item-description">Without right technique to qualify the deals, there won't be any optimization possible backwards.</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Support Section -->
-                <div class="section support-section">
-                    <div class="icon-container">
-                        <div class="section-icon support-icon"></div>
-                        <h2 class="section-title">Support Needed</h2>
-                    </div>
-                    <p class="section-description">What support do we need from IT, business teams, or leadership for data initiatives?</p>
-                    
-                    <div class="input-areas">
-                        <div class="input-group">
-                            <label class="input-label">Support Area 1</label>
-                            <textarea class="input-area" placeholder="IT support, data access, business stakeholder engagement, or tooling needs for BI success"></textarea>
+                <div class="content-section support-section">
+                    <h3 class="section-title">Support Needed</h3>
+                    <div class="items-list">
+                        <div class="item">
+                            <h4 class="item-title">Team Enthusiasm for Automation</h4>
+                            <p class="item-description">We'd love to see teams share our excitement for automation. It's like the biggest fixed deposit that just keeps growing.</p>
                         </div>
-                        
-                        <div class="input-group">
-                            <label class="input-label">Support Area 2</label>
-                            <textarea class="input-area" placeholder="Additional support needs or cross-team coordination requirements"></textarea>
+                        <div class="item">
+                            <h4 class="item-title">Team Lead Tool Adoption</h4>
+                            <p class="item-description">Would appreciate support from team leads on tool adoption. When leadership embraces change, magic happens.</p>
                         </div>
-                        
-                        <div class="input-group">
-                            <label class="input-label">Support Area 3 (Optional)</label>
-                            <textarea class="input-area" placeholder="Any other support or resources needed (if applicable)"></textarea>
+                        <div class="item">
+                            <h4 class="item-title">AI Investment & Learning</h4>
+                            <p class="item-description">Let's invest in AI together and learn daily. When we embrace it, we collaborate better and faster.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        
-        <footer class="slide-footer">
-            <div class="footer-text">Business Intelligence Monthly Priorities</div>
-        </footer>
     </div>
     
     <script>
-        // Auto-focus on first empty field
+        // Stagger animation for items
         document.addEventListener('DOMContentLoaded', function() {
-            const firstTextarea = document.querySelector('.input-area');
-            if (firstTextarea) {
-                firstTextarea.focus();
-            }
-        });
-        
-        // Handle keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const textareas = Array.from(document.querySelectorAll('.input-area'));
-                const currentIndex = textareas.indexOf(document.activeElement);
-                const nextIndex = (currentIndex + 1) % textareas.length;
-                textareas[nextIndex].focus();
-            }
-        });
-        
-        // Auto-resize textareas
-        document.querySelectorAll('.input-area').forEach(textarea => {
-            textarea.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = Math.max(this.scrollHeight, 120) + 'px';
+            const items = document.querySelectorAll('.item');
+            items.forEach((item, index) => {
+                item.style.animationDelay = `${0.9 + (index * 0.1)}s`;
+                item.style.opacity = '0';
+                item.style.animation = 'fadeInUp 0.6s ease-out forwards';
             });
         });
-        
-        // Save content to localStorage
-        const saveContent = () => {
-            const content = {};
-            document.querySelectorAll('.input-area').forEach((element, index) => {
-                content[`risk_support_field_${index}`] = element.value;
-            });
-            localStorage.setItem('risks_support_content', JSON.stringify(content));
-        };
-        
-        // Load content from localStorage
-        const loadContent = () => {
-            const saved = localStorage.getItem('risks_support_content');
-            if (saved) {
-                const content = JSON.parse(saved);
-                document.querySelectorAll('.input-area').forEach((element, index) => {
-                    if (content[`risk_support_field_${index}`]) {
-                        element.value = content[`risk_support_field_${index}`];
-                        // Trigger resize
-                        element.style.height = 'auto';
-                        element.style.height = Math.max(element.scrollHeight, 120) + 'px';
-                    }
-                });
-            }
-        };
-        
-        // Auto-save on input
-        document.addEventListener('input', saveContent);
-        
-        // Load saved content on page load
-        document.addEventListener('DOMContentLoaded', loadContent);
-        
-        // Clear content function (for development/testing)
-        window.clearContent = () => {
-            localStorage.removeItem('risks_support_content');
-            document.querySelectorAll('.input-area').forEach(textarea => {
-                textarea.value = '';
-                textarea.style.height = '120px';
-            });
-        };
     </script>
 </body>
 </html>
