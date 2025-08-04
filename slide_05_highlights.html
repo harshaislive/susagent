@@ -252,6 +252,57 @@
             color: #002140;
         }
         
+        /* Compact layout styles */
+        .compact-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 20px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border-left: 3px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .wins-section .compact-item {
+            border-left-color: #344736;
+        }
+        
+        .learnings-section .compact-item {
+            border-left-color: #002140;
+        }
+        
+        .compact-item:hover {
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .bullet {
+            font-size: 18px;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .wins-section .bullet {
+            color: #344736;
+        }
+        
+        .learnings-section .bullet {
+            color: #002140;
+        }
+        
+        .compact-text {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #342e29;
+        }
+        
+        .compact-text strong {
+            font-weight: 600;
+        }
+        
         @media (max-width: 1024px) {
             .content-area {
                 padding: 0 60px;
@@ -396,21 +447,18 @@
                         <div class="section-icon">✓</div>
                         <h3 class="section-title">Quick Wins</h3>
                     </div>
-                    <div class="achievements-list">
-                        <div class="achievement-item">
-                            <h4 class="achievement-title">KMS Functionality (DIY)</h4>
-                            <p class="achievement-description">Built internal knowledge management system for instant access to team insights and documentation.</p>
-                            <div class="achievement-impact">self-service knowledge</div>
+                    <div class="achievements-list compact">
+                        <div class="achievement-item compact-item">
+                            <span class="bullet">•</span>
+                            <span class="compact-text"><strong>KMS Functionality (DIY)</strong> — Internal knowledge system for instant team insights</span>
                         </div>
-                        <div class="achievement-item">
-                            <h4 class="achievement-title">Brand Voice Transformer</h4>
-                            <p class="achievement-description">Takes any content and transforms it into our voice. Prompt enhancement strategy to hit brand tone perfectly.</p>
-                            <div class="achievement-impact">consistent messaging</div>
+                        <div class="achievement-item compact-item">
+                            <span class="bullet">•</span>
+                            <span class="compact-text"><strong>Brand Voice Transformer</strong> — Auto-converts content to match brand tone</span>
                         </div>
-                        <div class="achievement-item">
-                            <h4 class="achievement-title">Human in the Loop Data Alerts</h4>
-                            <p class="achievement-description">MCP-powered alerts for Facebook ads data and Typeform analysis with simple query interface.</p>
-                            <div class="achievement-impact">proactive monitoring</div>
+                        <div class="achievement-item compact-item">
+                            <span class="bullet">•</span>
+                            <span class="compact-text"><strong>Human-in-Loop Data Alerts</strong> — MCP-powered monitoring for ads & forms</span>
                         </div>
                     </div>
                 </div>
@@ -420,21 +468,18 @@
                         <div class="section-icon">◊</div>
                         <h3 class="section-title">Key Learnings</h3>
                     </div>
-                    <div class="achievements-list">
-                        <div class="achievement-item">
-                            <h4 class="achievement-title">Expand Top of the Funnel</h4>
-                            <p class="achievement-description">Diversify acquisition channels beyond Facebook ads to create multiple lead inflow streams and reduce dependency.</p>
-                            <div class="achievement-impact">channel diversification</div>
+                    <div class="achievements-list compact">
+                        <div class="achievement-item compact-item">
+                            <span class="bullet">•</span>
+                            <span class="compact-text"><strong>Expand Top of Funnel</strong> — Diversify beyond Facebook ads for multiple lead streams</span>
                         </div>
-                        <div class="achievement-item">
-                            <h4 class="achievement-title">Enhance Quality of the Funnel</h4>
-                            <p class="achievement-description">Focus on qualification techniques to improve conversion rates and maximize value from existing traffic.</p>
-                            <div class="achievement-impact">better conversions</div>
+                        <div class="achievement-item compact-item">
+                            <span class="bullet">•</span>
+                            <span class="compact-text"><strong>Enhance Funnel Quality</strong> — Better qualification techniques for higher conversions</span>
                         </div>
-                        <div class="achievement-item">
-                            <h4 class="achievement-title">Balanced Digitalization</h4>
-                            <p class="achievement-description">Spread automation across all verticals instead of 1-2 to prevent imbalance and ensure holistic growth.</p>
-                            <div class="achievement-impact">systemic improvement</div>
+                        <div class="achievement-item compact-item">
+                            <span class="bullet">•</span>
+                            <span class="compact-text"><strong>Balanced Digitalization</strong> — Spread automation across all verticals, not just 1-2</span>
                         </div>
                     </div>
                 </div>
