@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest | Our Top 3 Priorities</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('./fonts/ABCArizonaFlare-Regular-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaFlare-Regular-Trial.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('./fonts/ABCArizonaFlare-Light-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaFlare-Light-Trial.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('./fonts/ABCArizonaSans-Regular-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaSans-Regular-Trial.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'ABC Arizona Sans', Arial, sans-serif;
+            background: #ffffff;
+            color: #342e29;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .slide-container {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 60px;
+            position: relative;
+        }
+        
+        .slide-header {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .slide-number {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 16px;
+            color: #342e29;
+            background: rgba(52, 46, 41, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+        
+        .slide-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 400;
+            color: #342e29;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .slide-subtitle {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 18px;
+            color: #002140;
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        .priorities-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .priority-item {
+            background: #fdfbf7;
+            border: 1px solid rgba(52, 46, 41, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(52, 46, 41, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .priority-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #002140, #344736);
+            transition: width 0.3s ease;
+        }
+        
+        .priority-item:hover {
+            background: #f8f6f2;
+            border-color: rgba(52, 46, 41, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 46, 41, 0.15);
+        }
+        
+        .priority-item:hover::before {
+            width: 8px;
+        }
+        
+        .priority-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .priority-number {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: #002140;
+            margin-right: 20px;
+            line-height: 1;
+            opacity: 0.7;
+        }
+        
+        .priority-title-input {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #342e29;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(52, 46, 41, 0.3);
+            padding: 8px 0;
+            flex: 1;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .priority-title-input::placeholder {
+            color: rgba(52, 46, 41, 0.5);
+            font-style: italic;
+        }
+        
+        .priority-title-input:focus {
+            border-bottom-color: #002140;
+        }
+        
+        .priority-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .content-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-label {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #002140;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        
+        .section-content {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 16px;
+            color: #342e29;
+            background: #ffffff;
+            border: 1px solid rgba(52, 46, 41, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 80px;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s ease;
+            line-height: 1.5;
+        }
+        
+        .section-content::placeholder {
+            color: rgba(52, 46, 41, 0.5);
+            font-style: italic;
+        }
+        
+        .section-content:focus {
+            border-color: #002140;
+            background: rgba(0, 33, 64, 0.05);
+        }
+        
+        .slide-footer {
+            position: fixed;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .footer-text {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 14px;
+            color: #342e29;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 968px) {
+            .priority-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 60px 30px;
+            }
+            
+            .slide-header {
+                top: 20px;
+                left: 30px;
+                right: 30px;
+            }
+            
+            .priority-item {
+                padding: 24px;
+            }
+            
+            .priority-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .priority-number {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+            
+            .priority-title-input {
+                font-size: 24px;
+            }
+            
+            .slide-footer {
+                bottom: 20px;
+                left: 30px;
+                right: 30px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: #344736;
+            }
+            
+            .slide-container {
+                min-height: auto;
+            }
+            
+            .slide-footer {
+                position: relative;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <header class="slide-header">
+            <div class="logo">BEFOREST</div>
+            <div class="slide-number">Slide 2 of 4</div>
+        </header>
+        
+        <main class="content-area">
+            <h1 class="slide-title">BI Team's Top 3 Priorities</h1>
+            <p class="slide-subtitle">Data-driven outcomes that deliver business value</p>
+            
+            <div class="priorities-container">
+                <!-- Priority 1 -->
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <div class="priority-number">1</div>
+                        <input type="text" class="priority-title-input" placeholder="Priority Title">
+                    </div>
+                    <div class="priority-content">
+                        <div class="content-section">
+                            <div class="section-label">Why this matters</div>
+                            <textarea class="section-content" placeholder="How does this priority drive data insights or improve analytical capabilities for the business?"></textarea>
+                        </div>
+                        <div class="content-section">
+                            <div class="section-label">Key success metric</div>
+                            <textarea class="section-content" placeholder="What KPIs, metrics, or data quality improvements will measure success?"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Priority 2 -->
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <div class="priority-number">2</div>
+                        <input type="text" class="priority-title-input" placeholder="Priority Title">
+                    </div>
+                    <div class="priority-content">
+                        <div class="content-section">
+                            <div class="section-label">Why this matters</div>
+                            <textarea class="section-content" placeholder="How does this priority drive data insights or improve analytical capabilities for the business?"></textarea>
+                        </div>
+                        <div class="content-section">
+                            <div class="section-label">Key success metric</div>
+                            <textarea class="section-content" placeholder="What KPIs, metrics, or data quality improvements will measure success?"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Priority 3 -->
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <div class="priority-number">3</div>
+                        <input type="text" class="priority-title-input" placeholder="Priority Title">
+                    </div>
+                    <div class="priority-content">
+                        <div class="content-section">
+                            <div class="section-label">Why this matters</div>
+                            <textarea class="section-content" placeholder="How does this priority drive data insights or improve analytical capabilities for the business?"></textarea>
+                        </div>
+                        <div class="content-section">
+                            <div class="section-label">Key success metric</div>
+                            <textarea class="section-content" placeholder="What KPIs, metrics, or data quality improvements will measure success?"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="slide-footer">
+            <div class="footer-text">Business Intelligence Monthly Priorities</div>
+        </footer>
+    </div>
+    
+    <script>
+        // Auto-focus on first empty field
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstInput = document.querySelector('.priority-title-input');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        });
+        
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const focusableElements = Array.from(document.querySelectorAll('.priority-title-input, .section-content'));
+                const currentIndex = focusableElements.indexOf(document.activeElement);
+                const nextIndex = (currentIndex + 1) % focusableElements.length;
+                focusableElements[nextIndex].focus();
+            }
+        });
+        
+        // Auto-resize textareas
+        document.querySelectorAll('.section-content').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.max(this.scrollHeight, 80) + 'px';
+            });
+        });
+        
+        // Save content to localStorage
+        const saveContent = () => {
+            const content = {};
+            document.querySelectorAll('.priority-title-input, .section-content').forEach((element, index) => {
+                content[`field_${index}`] = element.value;
+            });
+            localStorage.setItem('priorities_content', JSON.stringify(content));
+        };
+        
+        // Load content from localStorage
+        const loadContent = () => {
+            const saved = localStorage.getItem('priorities_content');
+            if (saved) {
+                const content = JSON.parse(saved);
+                document.querySelectorAll('.priority-title-input, .section-content').forEach((element, index) => {
+                    if (content[`field_${index}`]) {
+                        element.value = content[`field_${index}`];
+                    }
+                });
+            }
+        };
+        
+        // Auto-save on input
+        document.addEventListener('input', saveContent);
+        
+        // Load saved content on page load
+        document.addEventListener('DOMContentLoaded', loadContent);
+    </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest | Monthly Team Priorities - Title Slide</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('./fonts/ABCArizonaFlare-Regular-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaFlare-Regular-Trial.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('./fonts/ABCArizonaFlare-Light-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaFlare-Light-Trial.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('./fonts/ABCArizonaSans-Regular-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaSans-Regular-Trial.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'ABC Arizona Sans', Arial, sans-serif;
+            background: #ffffff;
+            color: #342e29;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 60px;
+            position: relative;
+        }
+        
+        .slide-header {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .slide-number {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 16px;
+            color: #342e29;
+            background: rgba(52, 46, 41, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .title-content {
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .main-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: clamp(32px, 6vw, 68px);
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: clamp(20px, 3vw, 36px);
+            font-weight: 300;
+            color: #002140;
+            margin-bottom: 50px;
+            line-height: 1.2;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+            width: 100%;
+        }
+        
+        .detail-item {
+            background: #fdfbf7;
+            border: 1px solid rgba(52, 46, 41, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(52, 46, 41, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .detail-item:hover {
+            background: #f8f6f2;
+            border-color: rgba(52, 46, 41, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 46, 41, 0.15);
+        }
+        
+        .detail-label {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .detail-value {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 24px;
+            color: #342e29;
+            line-height: 1.3;
+            min-height: 32px;
+            border-bottom: 2px solid rgba(52, 46, 41, 0.3);
+            padding-bottom: 8px;
+        }
+        
+        .detail-value.editable {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(52, 46, 41, 0.3);
+            color: #342e29;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            width: 100%;
+        }
+        
+        .detail-value.editable::placeholder {
+            color: rgba(52, 46, 41, 0.5);
+            font-style: italic;
+        }
+        
+        .detail-value.editable:focus {
+            border-bottom-color: #002140;
+        }
+        
+        .slide-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .footer-text {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 14px;
+            color: #342e29;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 60px 30px;
+            }
+            
+            .slide-header {
+                top: 20px;
+                left: 30px;
+                right: 30px;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 40px;
+            }
+            
+            .detail-item {
+                padding: 20px;
+            }
+            
+            .slide-footer {
+                bottom: 20px;
+                left: 30px;
+                right: 30px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: #342e29;
+            }
+            
+            .slide-container {
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <header class="slide-header">
+            <div class="logo">BEFOREST</div>
+            <div class="slide-number">Slide 1 of 4</div>
+        </header>
+        
+        <main class="title-content">
+            <h1 class="main-title">BI Monthly Team Priorities</h1>
+            <h2 class="subtitle">Data-Driven Strategic Alignment</h2>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Team</div>
+                    <input type="text" class="detail-value editable" placeholder="e.g., Business Intelligence & Analytics" value="">
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Month</div>
+                    <input type="text" class="detail-value editable" placeholder="e.g., August 2025" value="">
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Presenter(s)</div>
+                    <input type="text" class="detail-value editable" placeholder="Enter presenter name(s)" value="">
+                </div>
+            </div>
+        </main>
+        
+        <footer class="slide-footer">
+            <div class="footer-text">Business Intelligence Monthly Priorities</div>
+        </footer>
+    </div>
+    
+    <script>
+        // Auto-focus on first empty field
+        document.addEventListener('DOMContentLoaded', function() {
+            const editableFields = document.querySelectorAll('.editable');
+            const firstEmpty = Array.from(editableFields).find(field => !field.value.trim());
+            if (firstEmpty) {
+                firstEmpty.focus();
+            }
+        });
+        
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const editableFields = Array.from(document.querySelectorAll('.editable'));
+                const currentIndex = editableFields.indexOf(document.activeElement);
+                const nextIndex = (currentIndex + 1) % editableFields.length;
+                editableFields[nextIndex].focus();
+            }
+        });
+    </script>
+</body>
+</html>

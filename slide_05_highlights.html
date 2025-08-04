@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest | Highlights from Last Month</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('./fonts/ABCArizonaFlare-Regular-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaFlare-Regular-Trial.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('./fonts/ABCArizonaFlare-Light-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaFlare-Light-Trial.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('./fonts/ABCArizonaSans-Regular-Trial.woff2') format('woff2'),
+                 url('./fonts/ABCArizonaSans-Regular-Trial.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'ABC Arizona Sans', Arial, sans-serif;
+            background: #ffffff;
+            color: #342e29;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .slide-container {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 60px;
+            position: relative;
+        }
+        
+        .slide-header {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .slide-number {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 16px;
+            color: #342e29;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(52, 46, 41, 0.1);
+        }
+        
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+        
+        .slide-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 400;
+            color: #342e29;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .slide-subtitle {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 18px;
+            color: #342e29;
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        .highlights-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%;
+        }
+        
+        .section {
+            background: #fdfbf7;
+            border: 1px solid rgba(52, 46, 41, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(52, 46, 41, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, #ffc083, #ff774a);
+            transition: height 0.3s ease;
+        }
+        
+        .section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(52, 46, 41, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section:hover::before {
+            height: 8px;
+        }
+        
+        .section-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #342e29;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-description {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 16px;
+            color: #342e29;
+            margin-bottom: 24px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .input-areas {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .input-label {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #342e29;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        
+        .input-area {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 16px;
+            color: #342e29;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(52, 46, 41, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 120px;
+            resize: vertical;
+            outline: none;
+            transition: all 0.3s ease;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .input-area::placeholder {
+            color: rgba(52, 46, 41, 0.5);
+            font-style: italic;
+        }
+        
+        .input-area:focus {
+            border-color: #ffc083;
+            background: rgba(52, 46, 41, 0.05);
+            box-shadow: 0 0 0 2px rgba(52, 46, 41, 0.1);
+        }
+        
+        .wins-section {
+            background: rgba(184, 220, 153, 0.1);
+        }
+        
+        .learnings-section {
+            background: rgba(255, 119, 74, 0.1);
+        }
+        
+        .icon-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+            opacity: 0.8;
+        }
+        
+        .wins-icon {
+            background: #ffc083;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+        }
+        
+        .learnings-icon {
+            background: #ffc083;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+        }
+        
+        .slide-footer {
+            position: fixed;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .footer-text {
+            font-family: 'ABC Arizona Sans', sans-serif;
+            font-size: 14px;
+            color: #342e29;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 968px) {
+            .highlights-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 60px 30px;
+            }
+            
+            .slide-header {
+                top: 20px;
+                left: 30px;
+                right: 30px;
+            }
+            
+            .section {
+                padding: 24px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .input-area {
+                min-height: 100px;
+            }
+            
+            .slide-footer {
+                bottom: 20px;
+                left: 30px;
+                right: 30px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: #4b3c35;
+            }
+            
+            .slide-container {
+                min-height: auto;
+            }
+            
+            .slide-footer {
+                position: relative;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <header class="slide-header">
+            <div class="logo">BEFOREST</div>
+            <div class="slide-number">Slide 4 of 4</div>
+        </header>
+        
+        <main class="content-area">
+            <h1 class="slide-title">BI Highlights from Last Month</h1>
+            <p class="slide-subtitle">Analytics wins and data insights gained</p>
+            
+            <div class="highlights-container">
+                <!-- Quick Wins Section -->
+                <div class="section wins-section">
+                    <div class="icon-container">
+                        <div class="section-icon wins-icon"></div>
+                        <h2 class="section-title">Quick Wins</h2>
+                    </div>
+                    <p class="section-description">What analytics initiatives delivered business value or insights?</p>
+                    
+                    <div class="input-areas">
+                        <div class="input-group">
+                            <label class="input-label">Win 1</label>
+                            <textarea class="input-area" placeholder="Successful dashboard launch, data insight that drove business decision, or process improvement"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Win 2</label>
+                            <textarea class="input-area" placeholder="Another win or positive outcome from the previous month"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Win 3 (Optional)</label>
+                            <textarea class="input-area" placeholder="Additional win or achievement (if applicable)"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Learnings Section -->
+                <div class="section learnings-section">
+                    <div class="icon-container">
+                        <div class="section-icon learnings-icon"></div>
+                        <h2 class="section-title">Key Learnings</h2>
+                    </div>
+                    <p class="section-description">What data challenges taught us valuable lessons about our analytical processes?</p>
+                    
+                    <div class="input-areas">
+                        <div class="input-group">
+                            <label class="input-label">Learning 1</label>
+                            <textarea class="input-area" placeholder="Data quality issues resolved, modeling challenges overcome, or stakeholder alignment improvements"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Learning 2</label>
+                            <textarea class="input-area" placeholder="What would you do differently next time? What insights did you gain?"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Learning 3 (Optional)</label>
+                            <textarea class="input-area" placeholder="Additional insights or lessons learned (if applicable)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="slide-footer">
+            <div class="footer-text">Business Intelligence Monthly Priorities</div>
+        </footer>
+    </div>
+    
+    <script>
+        // Auto-focus on first empty field
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstTextarea = document.querySelector('.input-area');
+            if (firstTextarea) {
+                firstTextarea.focus();
+            }
+        });
+        
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const textareas = Array.from(document.querySelectorAll('.input-area'));
+                const currentIndex = textareas.indexOf(document.activeElement);
+                const nextIndex = (currentIndex + 1) % textareas.length;
+                textareas[nextIndex].focus();
+            }
+        });
+        
+        // Auto-resize textareas
+        document.querySelectorAll('.input-area').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.max(this.scrollHeight, 120) + 'px';
+            });
+        });
+        
+        // Save content to localStorage
+        const saveContent = () => {
+            const content = {};
+            document.querySelectorAll('.input-area').forEach((element, index) => {
+                content[`highlights_field_${index}`] = element.value;
+            });
+            localStorage.setItem('highlights_content', JSON.stringify(content));
+        };
+        
+        // Load content from localStorage
+        const loadContent = () => {
+            const saved = localStorage.getItem('highlights_content');
+            if (saved) {
+                const content = JSON.parse(saved);
+                document.querySelectorAll('.input-area').forEach((element, index) => {
+                    if (content[`highlights_field_${index}`]) {
+                        element.value = content[`highlights_field_${index}`];
+                        // Trigger resize
+                        element.style.height = 'auto';
+                        element.style.height = Math.max(element.scrollHeight, 120) + 'px';
+                    }
+                });
+            }
+        };
+        
+        // Auto-save on input
+        document.addEventListener('input', saveContent);
+        
+        // Load saved content on page load
+        document.addEventListener('DOMContentLoaded', loadContent);
+        
+        // Clear content function (for development/testing)
+        window.clearContent = () => {
+            localStorage.removeItem('highlights_content');
+            document.querySelectorAll('.input-area').forEach(textarea => {
+                textarea.value = '';
+                textarea.style.height = '120px';
+            });
+        };
+    </script>
+</body>
+</html>
