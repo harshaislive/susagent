@@ -466,7 +466,7 @@
 <body>
     <div class="presentation-container">
         <div class="main-viewport">
-            <iframe id="slideFrame" class="slide-frame" src="slide_01_title.html"></iframe>
+            <iframe id="slideFrame" class="slide-frame" src="slide_01_title.html" allowfullscreen></iframe>
         </div>
         
         <div class="playbar">
@@ -513,7 +513,8 @@
         function navigateToSlide(index) {
             if (index >= 0 && index < slides.length) {
                 currentSlideIndex = index;
-                document.getElementById('slideFrame').src = slides[index];
+                const iframe = document.getElementById('slideFrame');
+                iframe.src = slides[index] + '?t=' + Date.now(); // Cache busting
                 updateButtons();
             }
         }
@@ -551,8 +552,27 @@
         });
         
         // Initialize
-        updateButtons();
-        startTimer();
+        function initializePresentation() {
+            updateButtons();
+            startTimer();
+            
+            // Ensure first slide loads properly
+            const iframe = document.getElementById('slideFrame');
+            iframe.onload = function() {
+                console.log('Slide loaded successfully');
+            };
+            iframe.onerror = function() {
+                console.error('Error loading slide');
+            };
+        }
+        
+        // Start when page is ready
+        document.addEventListener('DOMContentLoaded', initializePresentation);
+        
+        // Fallback initialization
+        if (document.readyState === 'complete') {
+            initializePresentation();
+        }
     </script>
 </body>
 </html>
